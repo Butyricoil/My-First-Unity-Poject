@@ -14,6 +14,37 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Здесь будет код для управления движением
+        if (Input.GetKey("d"))
+        {
+            strafeLeft = true;
+        }
+        else
+        {
+            strafeLeft = false;
+        }
+
+        if (Input.GetKey("a"))
+        {
+            strafeRight = true;
+        }
+        else
+        {
+            strafeRight = false;
+        }
+
+        if (Input.GetKeyDown("Space"))
+        {
+            doJump = true;
+        }
+        else
+        {
+            doJump = false;
+        }
     }
+
+    void FixedUpdate()
+        {
+            rb.AddForce(0, 0, runSpeed * Time.deltaTime);
+        }
+
 }
