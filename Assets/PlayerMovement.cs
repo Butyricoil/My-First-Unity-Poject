@@ -32,19 +32,29 @@ public class PlayerMovement : MonoBehaviour
             strafeRight = false;
         }
 
-        if (Input.GetKeyDown("Space"))
+        if (Input.GetKeyDown("space"))
         {
             doJump = true;
-        }
-        else
-        {
-            doJump = false;
         }
     }
 
     void FixedUpdate()
+    {
+        rb.AddForce(0, 0, runSpeed * Time.deltaTime);
+
+        if (strafeLeft)
         {
-            rb.AddForce(0, 0, runSpeed * Time.deltaTime);
+            rb.AddForce(strafeSpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        }
+        else if (strafeRight)
+        {
+            rb.AddForce(-strafeSpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
 
+        if (doJump && Mathf.Abs(rb.linearVelocity.y) < 0.01f)
+        {
+            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            doJump = false;
+        }
+    }
 }
