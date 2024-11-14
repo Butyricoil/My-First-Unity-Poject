@@ -36,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
         {
             doJump = true;
         }
+
+        if (transform.position.y < -5f)
+        {
+            Debug.Log("End of The Game")
+        }
     }
 
     void FixedUpdate()
