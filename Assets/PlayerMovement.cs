@@ -39,13 +39,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (transform.position.y < -5f)
         {
-            Debug.Log("End of The Game")
+            Debug.Log("End of The Game");
         }
     }
 
     void FixedUpdate()
     {
-        rb.AddForce(0, 0, runSpeed * Time.deltaTime);
+        // rb.AddForce(0, 0, runSpeed * Time.deltaTime);
+        rb.MovePosition(transform.position + Vector3.forward * runSpeed * Time.deltaTime);
 
         if (strafeLeft)
         {
