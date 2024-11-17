@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameManager gm;
     public Rigidbody rb;
 
     public float runSpeed = 500f;
@@ -11,6 +13,23 @@ public class PlayerMovement : MonoBehaviour
     protected bool strafeLeft = false;
     protected bool strafeRight = false;
     protected bool doJump = false;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Obstacle")
+        {
+            gm.EndGame();
+            Debug.Log("End Game");
+        }
+
+        if (collision.collider.tag == "Finish")
+        {
+            Debug.Log("You Win!");
+        }
+
+
+
+    }
 
     void Update()
     {
@@ -39,7 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (transform.position.y < -5f)
         {
-            Debug.Log("End of The Game");
+            Debug.Log("End Game");
+            gm.EndGame();
         }
     }
 
