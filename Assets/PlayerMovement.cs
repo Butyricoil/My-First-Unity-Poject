@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -79,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (doJump && Mathf.Abs(rb.linearVelocity.y) < 0.01f)
         {
+            transform.DORewind();
+            transform.DOShakeScale(.5f, .5f, 3, 30);
             rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
             doJump = false;
         }
