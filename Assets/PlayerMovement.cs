@@ -4,55 +4,45 @@ using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameManager gm;
-    public Rigidbody rb;
+    [SerializeField]
+    private GameManager gm;
 
-    public float runSpeed = 500f;
-    public float strafeSpeed = 500f;
-    public float jumpForce = 30f;
+    [SerializeField]
+    private Rigidbody rb;
 
-    protected bool strafeLeft = false;
-    protected bool strafeRight = false;
-    protected bool doJump = false;
+    [SerializeField]
+    private float runSpeed = 10f;
+
+    [SerializeField]
+    private float strafeSpeed = 10f;
+
+    [SerializeField]
+    private float jumpForce = 30f;
+
+    private bool strafeLeft = false;
+    private bool strafeRight = false;
+    private bool doJump = false;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Obstacle")
+        if (collision.collider.CompareTag("Obstacle"))
         {
             gm.EndGame();
             Debug.Log("End Game");
         }
 
-        if (collision.collider.tag == "Finish")
+        if (collision.collider.CompareTag("Finish"))
         {
             Debug.Log("You Win!");
         }
-
-
-
     }
 
     void Update()
     {
-        if (Input.GetKey("d"))
-        {
-            strafeLeft = true;
-        }
-        else
-        {
-            strafeLeft = false;
-        }
+        strafeLeft = Input.GetKey(KeyCode.D);
+        strafeRight = Input.GetKey(KeyCode.A);
 
-        if (Input.GetKey("a"))
-        {
-            strafeRight = true;
-        }
-        else
-        {
-            strafeRight = false;
-        }
-
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             doJump = true;
         }
@@ -66,23 +56,24 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // rb.AddForce(0, 0, runSpeed * Time.deltaTime);
-        rb.MovePosition(transform.position + Vector3.forward * runSpeed * Time.deltaTime);
+        Vector3 moveDirection = Vector3.forward * runSpeed;
 
         if (strafeLeft)
         {
-            rb.AddForce(strafeSpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            moveDirection += Vector3.right * strafeSpeed;
         }
         else if (strafeRight)
         {
-            rb.AddForce(-strafeSpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            moveDirection += Vector3.left * strafeSpeed;
         }
+
+        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
 
         if (doJump && Mathf.Abs(rb.linearVelocity.y) < 0.01f)
         {
             transform.DORewind();
             transform.DOShakeScale(.5f, .5f, 3, 30);
-            rb.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
             doJump = false;
         }
     }
