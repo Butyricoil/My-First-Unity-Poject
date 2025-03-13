@@ -414,7 +414,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1853775, y: -0, z: -0, w: 0.9826674}
-  m_LocalPosition: {x: 0, y: 2.394, z: -4.03}
+  m_LocalPosition: {x: 0, y: 2.3, z: -5}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1106794077}
-  offset: {x: 0, y: 3, z: -4}
+  offset: {x: 0, y: 2.3, z: -5}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,8 +1169,10 @@ GameObject:
   - component: {fileID: 1106794076}
   - component: {fileID: 1106794075}
   - component: {fileID: 1106794074}
-  - component: {fileID: 1106794078}
   - component: {fileID: 1106794079}
+  - component: {fileID: 1106794078}
+  - component: {fileID: 1106794080}
+  - component: {fileID: 1106794081}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1282,11 +1284,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73435009df8c72a46b9f891086a1abde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 868452869}
-  rb: {fileID: 1106794079}
-  runSpeed: 0
+  runSpeed: 20
   strafeSpeed: 20
   jumpForce: 6
+  rb: {fileID: 1106794079}
+  playerInput: {fileID: 1106794081}
 --- !u!54 &1106794079
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1314,6 +1316,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1106794080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106794073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2db1f81f8754bf3ab06f85499c8a3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm: {fileID: 868452869}
+--- !u!114 &1106794081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106794073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84142802d1c4c6895020e66cb63f576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1113271899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,15 +1868,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82698c2f6b3fc7f4cacf354c894faf66, type: 2}
+  m_sharedMaterial: {fileID: -1385831837732199788, guid: 82698c2f6b3fc7f4cacf354c894faf66, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279900698
-  m_fontColor: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
+    rgba: 4293897728
+  m_fontColor: {r: 0, g: 0.68235296, b: 0.93725497, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1904,7 +1931,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -7.895271}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
