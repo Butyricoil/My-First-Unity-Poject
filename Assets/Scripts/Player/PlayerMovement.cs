@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private PlayerInput playerInput;
 
-    void Awake()
+    void Awake() // find rigibody and player
     {
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
@@ -25,16 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 moveDirection = Vector3.forward * runSpeed;
-
-        if (playerInput.StrafeLeft)
-        {
-            moveDirection += Vector3.right * strafeSpeed;
-        }
-        else if (playerInput.StrafeRight)
-        {
-            moveDirection += Vector3.left * strafeSpeed;
-        }
+        float horizontal = playerInput.HorizontalInput;
+        Vector3 moveDirection = Vector3.forward * runSpeed + Vector3.right * horizontal * strafeSpeed;
 
         rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
     }
@@ -43,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerInput.Jump && Mathf.Abs(rb.linearVelocity.y) < 0.01f)
         {
+            // DOTween
             transform.DORewind();
             transform.DOShakeScale(0.5f, 0.5f, 3, 30);
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);

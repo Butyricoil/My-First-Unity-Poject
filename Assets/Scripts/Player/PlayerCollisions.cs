@@ -4,7 +4,7 @@ public class PlayerCollision : MonoBehaviour
 {
     [SerializeField] private GameManager gm;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) // collision detection
     {
         if (collision.collider.CompareTag("Obstacle"))
         {
