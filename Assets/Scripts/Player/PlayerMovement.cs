@@ -11,16 +11,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private PlayerInput playerInput;
 
-    void Awake() // find rigibody and player
+    private bool shouldJump = false;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
     }
 
+    void Update()
+    {
+        if (playerInput.Jump && IsGrounded())
+        {
+            shouldJump = true;
+        }
+    }
+
     void FixedUpdate()
     {
         MovePlayer();
-        PerformJump();
+        if (shouldJump)
+        {
+            PerformJump();
+            shouldJump = false;
+        }
     }
 
     private void MovePlayer()
@@ -33,12 +47,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void PerformJump()
     {
-        if (playerInput.Jump && Mathf.Abs(rb.linearVelocity.y) < 0.01f)
-        {
-            // DOTween
-            transform.DORewind();
-            transform.DOShakeScale(0.5f, 0.5f, 3, 30);
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
-        }
+        transform.DORewind();
+        transform.DOShakeScale(0.5f, 0.5f, 3, 30);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 1.1f);
     }
 }
