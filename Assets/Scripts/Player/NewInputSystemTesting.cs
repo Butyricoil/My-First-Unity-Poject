@@ -12,7 +12,7 @@ public class NewInputSystemTesting : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
 
-        PlayerInputActions playerInputActions = new PlayerInputActions;
+        PlayerInputActions playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         playerInputActions.Player.Jump.performed += Jump;
         playerInputActions.Player.Movement.performed += Movement_performed;
