@@ -1590,8 +1590,8 @@ MonoBehaviour:
     m_ActionName: Player/Jump
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: ee4b1f2c-18aa-4ef8-87c5-b615ce2b5337
-    m_ActionName: Player/Strafe
+    m_ActionId: 0da21bc6-6ff3-42ae-a011-04366c8cd540
+    m_ActionName: 'Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
