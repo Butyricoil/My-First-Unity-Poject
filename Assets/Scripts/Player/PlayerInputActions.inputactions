@@ -59,28 +59,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "1c3d8e76-cf0c-4e75-aeb8-0e348a77e99a",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "6223e899-2505-4889-bfb1-6198aef8d7f2",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "left",
                     "id": "3247f448-5686-48c6-99cf-b92f2a208714",
                     "path": "<Keyboard>/a",
@@ -112,28 +90,6 @@
                     "action": "Movement",
                     "isComposite": true,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "7d44cd4a-eeb9-4749-8a38-8f2cadbf46c7",
-                    "path": "<Touchscreen>/delta/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Touchscreen",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "95bd5823-ea43-413f-8245-f457e41266e0",
-                    "path": "<Touchscreen>/delta/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Touchscreen",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "left",
