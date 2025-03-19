@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private PlayerInputHandler _inputHandler;
+    private bool _isGrounded;
 
     private void Awake()
     {
@@ -36,10 +37,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (_inputHandler.IsJumpTriggered)
+        if (_inputHandler.IsJumpTriggered && _isGrounded)
         {
             _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _inputHandler.ResetJumpTrigger(); // Сбрасываем триггер после прыжка
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Проверяем, что игрок столкнулся с объектом, у которого есть коллайдер
+        _isGrounded = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        // Проверяем, что игрок больше не контактирует с объектом
+        _isGrounded = false;
     }
 }
