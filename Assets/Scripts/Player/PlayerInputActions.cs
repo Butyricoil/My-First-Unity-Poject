@@ -70,6 +70,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""c7fa5923-03ba-4a06-94e1-907ad34ee700"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";DualSence"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""KeyboardBind"",
                     ""id"": ""9d61f500-82ee-4d7f-bde8-9bb6447a9234"",
                     ""path"": ""2DVector"",
@@ -81,8 +92,30 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
+                    ""name"": ""Up"",
                     ""id"": ""3247f448-5686-48c6-99cf-b92f2a208714"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""150c0f76-3f29-4940-8dda-bda6961fadc8"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6586c70b-322d-4489-9e0a-f187e2c92c46"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -114,8 +147,30 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
+                    ""name"": ""Up"",
                     ""id"": ""5da4878c-6dc7-4046-90c6-d14705035e52"",
+                    ""path"": ""<Touchscreen>/delta/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touchscreen"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""37a4332d-5baf-4745-9ddf-56f970bab1ad"",
+                    ""path"": ""<Touchscreen>/delta/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touchscreen"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""df02d4f8-506e-4d48-9328-c4454583deb0"",
                     ""path"": ""<Touchscreen>/delta/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -134,6 +189,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff18c723-3ddd-4c93-b134-ea24ad0d6a33"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";DualSence"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -156,6 +222,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<Touchscreen>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""DualSence"",
+            ""bindingGroup"": ""DualSence"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<DualSenseGamepadHID>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -299,6 +387,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (m_TouchscreenSchemeIndex == -1) m_TouchscreenSchemeIndex = asset.FindControlSchemeIndex("Touchscreen");
             return asset.controlSchemes[m_TouchscreenSchemeIndex];
+        }
+    }
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
+    private int m_DualSenceSchemeIndex = -1;
+    public InputControlScheme DualSenceScheme
+    {
+        get
+        {
+            if (m_DualSenceSchemeIndex == -1) m_DualSenceSchemeIndex = asset.FindControlSchemeIndex("DualSence");
+            return asset.controlSchemes[m_DualSenceSchemeIndex];
         }
     }
     public interface IPlayerActions
