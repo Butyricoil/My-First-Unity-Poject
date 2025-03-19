@@ -1,59 +1,37 @@
 using UnityEngine;
-using DG.Tweening;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float runSpeed = 10f;
-    [SerializeField] private float strafeSpeed = 10f;
-    [SerializeField] private float jumpForce = 30f;
+    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _jumpForce = 5f;
 
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private PlayerInput playerInput;
+    private Rigidbody _rigidbody;
+    private PlayerInputHandler _inputHandler;
 
-    private bool shouldJump = false;
-
-    void Awake()
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        playerInput = GetComponent<PlayerInput>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _inputHandler = GetComponent<PlayerInputHandler>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (playerInput.Jump && IsGrounded())
+        Move();
+        Jump();
+    }
+
+    private void Move()
+    {
+        Vector2 inputVector = _inputHandler.MovementInput;
+        _rigidbody.AddForce(new Vector3(inputVector.x, 0, inputVector.y) * _speed, ForceMode.Force);
+    }
+
+    private void Jump()
+    {
+        if (_inputHandler.JumpTriggered)
         {
-            shouldJump = true;
+            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _inputHandler.ResetJumpTrigger(); // Сбрасываем триггер после прыжка
         }
-    }
-
-    void FixedUpdate()
-    {
-        MovePlayer();
-        if (shouldJump)
-        {
-            PerformJump();
-            shouldJump = false;
-        }
-    }
-
-    private void MovePlayer()
-    {
-        float horizontal = playerInput.HorizontalInput;
-        Vector3 moveDirection = Vector3.forward * runSpeed + Vector3.right * horizontal * strafeSpeed;
-
-        rb.linearVelocity = new Vector3(moveDirection.x, rb.linearVelocity.y, moveDirection.z);
-    }
-
-    private void PerformJump()
-    {
-        transform.DORewind();
-        transform.DOShakeScale(0.5f, 0.5f, 3, 30);
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
-    }
-
-    private bool IsGrounded()
-    {
-        return Physics.Raycast(transform.position, Vector3.down, 1.1f);
     }
 }
