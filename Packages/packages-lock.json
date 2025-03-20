@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.nullkal.unisense": {
+      "version": "https://github.com/nullkal/UniSense.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.inputsystem": "1.0.1"
+      },
+      "hash": "fdc6a0a13142b8614592eb8424acdecf1e170048"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.4",
       "depth": 0,
