@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _inputHandler = GetComponent<PlayerInputHandler>();g
+        _inputHandler = GetComponent<PlayerInputHandler>();
     }
 
     private void Update()
